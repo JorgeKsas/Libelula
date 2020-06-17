@@ -862,13 +862,12 @@ else
 					print_action "Preparing and sending mail"
 					# Use thrid
 					sleep 5
-					${EXC_PATH}/mail/sendmail.py "$GLOBAL_MAIL_SUBJECT" "${EXC_PATH}/mail/${MAIL_FINAL_FILE}" "$GLOBAL_MAIL_TO" "$GLOBAL_MAIL_CC" "$COMPANY_USER_MAIL" "$COMPANY_USER_PASS" &>> $LOG_PATH
+					$SEND_EMAIL_BINARY_PATH "$GLOBAL_MAIL_SUBJECT" "${EXC_PATH}/mail/${MAIL_FINAL_FILE}" "$GLOBAL_MAIL_TO" "$GLOBAL_MAIL_CC" "$COMPANY_USER_MAIL" "$COMPANY_USER_PASS" &>> $LOG_PATH
 					if [ $? = 0 ]; then
 						end_action "Preparing and sending mail" "OK"
 					else
 						end_action "Preparing and sending mail" "ERROR. See $LOG_PATH for details."
 					fi
-					kill -9 `ps -ef | grep davmail | grep -v grep | awk -F " " {'print $2'}` &>> $LOG_PATH &
 				fi
 			fi
 			
